@@ -1827,13 +1827,13 @@ static void BattleControllerPlayer_SafariThrowMud(BattleSystem *bsys, BattleCont
     ctx->command = CONTROLLER_COMMAND_RUN_SCRIPT;
     ctx->commandNext = CONTROLLER_COMMAND_40;
     ctx->tempData = BattleSystem_Random(bsys) % 10;
-    if (ctx->safariRunAttempts > 0) {
-        ctx->safariRunAttempts--;
+    if (ctx->safariFleeStage > 0) {
+        ctx->safariFleeStage--;
     }
     if (ctx->tempData != 0) {
         ctx->msgTemp = 1;
-        if (ctx->unk_311C > 0) {
-            ctx->unk_311C--;
+        if (ctx->safariCatchStage > 0) {
+            ctx->safariCatchStage--;
         }
     }
 }
@@ -1845,11 +1845,11 @@ static void BattleControllerPlayer_SafariRun(BattleSystem *bsys, BattleContext *
     ctx->command = CONTROLLER_COMMAND_RUN_SCRIPT;
     ctx->commandNext = CONTROLLER_COMMAND_40;
     ctx->tempData = BattleSystem_Random(bsys) % 10;
-    if (ctx->unk_311C < 12) {
-        ctx->unk_311C++;
+    if (ctx->safariCatchStage < 12) {
+        ctx->safariCatchStage++;
     }
-    if (ctx->tempData != 0 && ctx->safariRunAttempts < 12) {
-        ctx->safariRunAttempts++;
+    if (ctx->tempData != 0 && ctx->safariFleeStage < 12) {
+        ctx->safariFleeStage++;
     }
 }
 
